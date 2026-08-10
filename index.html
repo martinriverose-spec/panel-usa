@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Panel USA</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04070C;--card:#0B1119;--card2:#101826;--line:#1E2A3C;--mint:#00FFB2;
+--amber:#FFC400;--red:#FF3355;--blue:#4DA6FF;--w:#fff;--g1:#C3CDD9;--g2:#8595A8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--w);font-family:Archivo,system-ui,sans-serif;font-size:15px;line-height:1.5;padding-bottom:46px}
+.wrap{max-width:760px;margin:0 auto;padding:0 14px}
+header{padding:20px 0 10px}h1{font-size:24px;font-weight:900;letter-spacing:-.02em}
+h1 span{color:var(--mint)}.sub{color:var(--g2);font-size:11.5px;font-family:'JetBrains Mono',monospace;margin-top:4px}
+.sh{display:flex;align-items:center;gap:8px;margin:24px 0 10px}
+.sh .d{width:10px;height:10px;border-radius:50%}.sh h2{font-size:16px;font-weight:900}
+.pick{background:var(--card);border:2px solid var(--mint);margin-bottom:14px}
+.alt{background:var(--card);border:1px solid var(--line);margin-bottom:12px}
+.ph{padding:12px 14px;background:var(--card2);border-bottom:1px solid var(--line);
+display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.ph .t{font-size:22px;font-weight:900}.ph .t em{font-style:normal;font-size:11px;color:var(--g2);font-weight:400;margin-left:8px}
+.pick .ph .b{font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#000;background:var(--mint);padding:4px 9px}
+.alt .ph .b{font-size:9.5px;font-weight:700;letter-spacing:.08em;color:var(--amber);border:1px solid var(--amber);padding:4px 9px}
+.trg{padding:12px 14px;background:#071510;border-bottom:1px solid var(--line)}
+.trg .lab{font-size:8.5px;font-weight:700;letter-spacing:.1em;color:var(--mint);margin-bottom:5px}
+.trg .px{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--mint);line-height:1}
+.lv{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.lc{padding:10px 4px;text-align:center;border-right:1px solid var(--line)}.lc:last-child{border-right:0}
+.lc .n{font-size:8.5px;font-weight:700;color:var(--g2);letter-spacing:.05em}
+.lc .p{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;margin-top:3px}
+.lc .x{font-size:9px;color:var(--g2);margin-top:2px;font-family:'JetBrains Mono',monospace}
+.lc.s .p{color:var(--red)}.lc.t .p{color:var(--mint)}
+.det{padding:12px 14px}
+.rw{display:block;margin-bottom:10px;font-size:12.5px}.rw:last-child{margin-bottom:0}
+.rw .kk{display:block;font-size:9px;font-weight:700;letter-spacing:.07em;color:var(--blue);margin-bottom:3px}
+.rw .v{color:var(--g1);line-height:1.55}
+.nw{display:block;color:var(--g1);text-decoration:none;padding:7px 0;border-bottom:1px solid rgba(30,42,60,.6);font-size:12px;line-height:1.45}
+.nw:last-child{border-bottom:0}.nw:hover{color:#fff}
+.nd{display:block;font-size:9.5px;color:var(--g2);font-family:'JetBrains Mono',monospace;margin-bottom:2px}
+.empty{background:var(--card);border:2px solid var(--red);padding:24px 16px;text-align:center;color:var(--g1);font-size:13px}
+.empty .big{font-size:30px;font-weight:900;color:var(--red);margin-bottom:8px}
+.calc{background:var(--card);border:2px solid var(--blue);padding:14px}
+.calc h3{font-size:12px;color:var(--blue);font-weight:900;letter-spacing:.05em;margin-bottom:10px}
+.cin{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.cf label{display:block;font-size:8.5px;font-weight:700;letter-spacing:.06em;color:var(--g2);margin-bottom:4px}
+.cf input,.cf select{width:100%;background:#060B12;border:1px solid var(--line);color:#fff;padding:8px 9px;
+font-family:'JetBrains Mono',monospace;font-size:14px;border-radius:0}
+.cf input:focus,.cf select:focus{outline:2px solid var(--blue);outline-offset:-1px}
+.cout{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.co{background:var(--card2);padding:9px 6px;text-align:center}
+.co .k{font-size:7.5px;font-weight:700;letter-spacing:.06em;color:var(--g2)}
+.co .v{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;margin-top:3px}
+.co.risk .v{color:var(--red)}.co.gain .v{color:var(--mint)}
+@media(max-width:520px){.cin{grid-template-columns:1fr}.cout{grid-template-columns:repeat(2,1fr)}}
+.jrn{background:var(--card);border:1px solid var(--amber);padding:14px}
+.jrn h3{font-size:12px;color:var(--amber);font-weight:900;letter-spacing:.05em;margin-bottom:10px}
+.jin{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr auto;gap:6px;margin-bottom:10px}
+.jin input,.jin select{background:#060B12;border:1px solid var(--line);color:#fff;padding:7px 8px;
+font-family:'JetBrains Mono',monospace;font-size:12.5px;width:100%;border-radius:0}
+.jin button,.jx{background:var(--amber);color:#000;border:0;font-weight:700;font-size:11px;
+padding:7px 12px;cursor:pointer;letter-spacing:.04em;font-family:Archivo}
+.jx{background:transparent;color:var(--g2);border:1px solid var(--line);margin-top:8px}
+@media(max-width:560px){.jin{grid-template-columns:1fr 1fr}}
+table{width:100%;border-collapse:collapse;font-size:11.5px;font-family:'JetBrains Mono',monospace}
+th{text-align:right;padding:6px;color:var(--g2);font-size:8.5px;letter-spacing:.05em;border-bottom:1px solid var(--line)}
+td{padding:6px;text-align:right;border-bottom:1px solid rgba(30,42,60,.5)}
+th:first-child,td:first-child{text-align:left}
+.pos{color:var(--mint)}.neg{color:var(--red)}
+.dead{background:var(--card);border:1px solid var(--red)}
+.dr{display:grid;grid-template-columns:64px 1fr;gap:9px;padding:8px 13px;border-bottom:1px solid var(--line);font-size:12px}
+.dr:last-child{border-bottom:0}.dr .t{font-weight:900;color:var(--red)}.dr .w{color:var(--g1)}
+footer{margin-top:24px;padding-top:13px;border-top:1px solid var(--line);color:var(--g2);font-size:10.5px;line-height:1.65}
+footer b{color:var(--g1)}
+</style></head><body><div class="wrap">
+<header><h1>Panel <span>USA</span> · Swing</h1>
+<div class="sub">Datos: cierre NY 2026-08-07 · Generado 10/08/2026 08:34 UTC · Estrategia: momentum 2-7 dias, objetivo 2-3,5 ATR</div></header>
+
+<div class="sh"><span class="d" style="background:var(--mint)"></span><h2 style="color:var(--mint)">Ordenes de hoy</h2></div>
+
+<div class="pick" data-e="15.12" data-s="14.16" data-t2="18.16" data-tk="PATH">
+  <div class="ph"><div class="t">PATH<em>15.05 $ · earnings 03/09</em></div>
+    <div class="b">PRINCIPAL</div></div>
+  <div class="trg"><div class="lab">BUY-STOP — SI NO TOCA ESTE PRECIO, NO HAY OPERACION</div>
+    <div class="px">15.12 $</div></div>
+  <div class="lv">
+    <div class="lc s"><div class="n">STOP</div><div class="p">14.16</div><div class="x">-6.3%</div></div>
+    <div class="lc t"><div class="n">OBJ 1 (2 ATR)</div><div class="p">16.86</div><div class="x">+11.5%</div></div>
+    <div class="lc t"><div class="n">OBJ 2 (3,5 ATR)</div><div class="p">18.16</div><div class="x">+20.2% · R:R 3.2</div></div>
+  </div>
+  <div class="det">
+    <div class="rw"><span class="kk">RACIONAL</span><span class="v">Lider de momentum: a 0.3% de su maximo de 20 sesiones,
+      +29% en el mes, +18% sobre MA200. ADR 6.4% — el objetivo de +20% son 3,5 dias tipicos de rango.
+      RVOL 0.75 · 1020 M$/dia.</span></div>
+    <div class="rw"><span class="kk">GESTION</span><span class="v">Mitad fuera en 16.86, stop a 15.12. Resto a 18.16.
+      Cierra si en 5 sesiones no toco OBJ1. Cancela la orden si abre con hueco &gt;+4%.</span></div>
+    <div class="rw news"><span class="kk">TITULARES</span><span class="v"><a class='nw' href='https://finance.yahoo.com/markets/stocks/articles/3-reasons-path-risky-1-204522938.html' target='_blank' rel='noopener'><span class='nd'>2026-08-09 · StockStory</span>3 Reasons PATH is Risky and 1 Stock to Buy Instead</a><a class='nw' href='https://247wallst.com/investing/2026/08/07/palantir-surges-10-uipath-rises-7-c3-ai-gains-5-as-agentic-ai-stocks-rally-together/' target='_blank' rel='noopener'><span class='nd'>2026-08-07 · 24/7 Wall St.</span>Palantir Surges 10%, UiPath Rises 7%, C3.ai Gains 5% as Agentic AI Stocks Rally Together</a><a class='nw' href='https://finance.yahoo.com/markets/stocks/articles/uipath-path-registers-bigger-fall-214504458.html' target='_blank' rel='noopener'><span class='nd'>2026-08-05 · Zacks</span>UiPath (PATH) Registers a Bigger Fall Than the Market: Important Facts to Note</a></span></div>
+  </div>
+</div>
+<div class="alt" data-e="21.53" data-s="20.67" data-t2="24.54" data-tk="S">
+  <div class="ph"><div class="t">S<em>21.40 $ · earnings 27/08</em></div>
+    <div class="b">ALTERNATIVA</div></div>
+  <div class="trg"><div class="lab">BUY-STOP — SI NO TOCA ESTE PRECIO, NO HAY OPERACION</div>
+    <div class="px">21.53 $</div></div>
+  <div class="lv">
+    <div class="lc s"><div class="n">STOP</div><div class="p">20.67</div><div class="x">-4.0%</div></div>
+    <div class="lc t"><div class="n">OBJ 1 (2 ATR)</div><div class="p">23.25</div><div class="x">+8.0%</div></div>
+    <div class="lc t"><div class="n">OBJ 2 (3,5 ATR)</div><div class="p">24.54</div><div class="x">+14.0% · R:R 3.5</div></div>
+  </div>
+  <div class="det">
+    <div class="rw"><span class="kk">RACIONAL</span><span class="v">Lider de momentum: a 0.5% de su maximo de 20 sesiones,
+      +20% en el mes, +37% sobre MA200. ADR 4.6% — el objetivo de +14% son 3,5 dias tipicos de rango.
+      RVOL 0.89 · 130 M$/dia.</span></div>
+    <div class="rw"><span class="kk">GESTION</span><span class="v">Mitad fuera en 23.25, stop a 21.53. Resto a 24.54.
+      Cierra si en 5 sesiones no toco OBJ1. Cancela la orden si abre con hueco &gt;+4%.</span></div>
+    <div class="rw news"><span class="kk">TITULARES</span><span class="v"><a class='nw' href='https://www.fool.com/coverage/filings/2026/08/08/what-to-know-about-sentinelone-s-insider-transactions-ahead-of-earnings/' target='_blank' rel='noopener'><span class='nd'>2026-08-08 · Motley Fool</span>What to Know About SentinelOne&#x27;s Insider Transactions Ahead of Earnings</a><a class='nw' href='https://www.fool.com/coverage/filings/2026/08/08/sentinelone-s-chief-accountant-sold-shares-here-s-what-investors-should-know/' target='_blank' rel='noopener'><span class='nd'>2026-08-08 · Motley Fool</span>SentinelOne&#x27;s Chief Accountant Sold Shares. Here&#x27;s What Investors Should Know</a><a class='nw' href='https://www.fool.com/coverage/filings/2026/08/08/this-sentinelone-executive-holds-usd15-million-in-stock-ahead-of-earnings-here-s-what-to-know/' target='_blank' rel='noopener'><span class='nd'>2026-08-08 · Motley Fool</span>This SentinelOne Executive Holds $15 Million in Stock Ahead of Earnings. Here&#x27;s What to Know</a></span></div>
+  </div>
+</div>
+<div class="alt" data-e="17.58" data-s="16.71" data-t2="20.11" data-tk="LYFT">
+  <div class="ph"><div class="t">LYFT<em>17.46 $ · earnings 04/11</em></div>
+    <div class="b">ALTERNATIVA</div></div>
+  <div class="trg"><div class="lab">BUY-STOP — SI NO TOCA ESTE PRECIO, NO HAY OPERACION</div>
+    <div class="px">17.58 $</div></div>
+  <div class="lv">
+    <div class="lc s"><div class="n">STOP</div><div class="p">16.71</div><div class="x">-4.9%</div></div>
+    <div class="lc t"><div class="n">OBJ 1 (2 ATR)</div><div class="p">19.02</div><div class="x">+8.2%</div></div>
+    <div class="lc t"><div class="n">OBJ 2 (3,5 ATR)</div><div class="p">20.11</div><div class="x">+14.4% · R:R 2.9</div></div>
+  </div>
+  <div class="det">
+    <div class="rw"><span class="kk">RACIONAL</span><span class="v">Lider de momentum: a 0.6% de su maximo de 20 sesiones,
+      +12% en el mes, +7% sobre MA200. ADR 4.3% — el objetivo de +14% son 3,5 dias tipicos de rango.
+      RVOL 1.93 · 194 M$/dia.</span></div>
+    <div class="rw"><span class="kk">GESTION</span><span class="v">Mitad fuera en 19.02, stop a 17.58. Resto a 20.11.
+      Cierra si en 5 sesiones no toco OBJ1. Cancela la orden si abre con hueco &gt;+4%.</span></div>
+    <div class="rw news"><span class="kk">TITULARES</span><span class="v"><a class='nw' href='https://www.barchart.com/story/news/3744676/dear-baidu-stock-fans-mark-your-calendars-for-august-18' target='_blank' rel='noopener'><span class='nd'>2026-08-09 · Barchart</span>Dear Baidu Stock Fans, Mark Your Calendars for August 18</a><a class='nw' href='https://finance.yahoo.com/markets/stocks/articles/lyft-q2-earnings-miss-revenues-180500760.html' target='_blank' rel='noopener'><span class='nd'>2026-08-07 · Zacks</span>LYFT Q2 Earnings Miss, Revenues Top Estimates on Record Rides</a><a class='nw' href='https://finance.yahoo.com/markets/stocks/articles/lyft-q2-rides-gross-bookings-165849196.html' target='_blank' rel='noopener'><span class='nd'>2026-08-07 · MT Newswires</span>Lyft Q2 Rides, Gross Bookings Growth Support Higher Estimates, RBC Says</a></span></div>
+  </div>
+</div>
+
+<div class="sh"><span class="d" style="background:var(--blue)"></span><h2 style="color:var(--blue)">Tamano de posicion</h2></div>
+<div class="calc"><h3>CUANTAS ACCIONES</h3>
+<div class="cin">
+<div class="cf"><label>CAPITAL ($)</label><input type="number" id="cap" value="500"></div>
+<div class="cf"><label>RIESGO (%)</label><input type="number" id="rsk" value="3" step="0.5"></div>
+<div class="cf"><label>VALOR</label><select id="sym"><option value='15.12|14.16|18.16'>PATH</option><option value='21.53|20.67|24.54'>S</option><option value='17.58|16.71|20.11'>LYFT</option></select></div></div>
+<div class="cout">
+<div class="co"><div class="k">ACCIONES</div><div class="v" id="osh">-</div></div>
+<div class="co"><div class="k">POSICION</div><div class="v" id="opos">-</div></div>
+<div class="co risk"><div class="k">STOP</div><div class="v" id="orisk">-</div></div>
+<div class="co gain"><div class="k">OBJ 2</div><div class="v" id="ogain">-</div></div></div></div>
+
+<div class="sh"><span class="d" style="background:var(--amber)"></span><h2 style="color:var(--amber)">Registro de operaciones</h2></div>
+<div class="jrn"><h3>APUNTA CADA TRADE — TOMADO O SALTADO</h3>
+<div class="jin">
+<input id="jtk" placeholder="TICKER">
+<input id="jen" type="number" step="0.01" placeholder="Entrada">
+<input id="jsl" type="number" step="0.01" placeholder="Stop">
+<input id="jex" type="number" step="0.01" placeholder="Salida (vacio=abierto)">
+<button onclick="jadd()">GUARDAR</button></div>
+<div id="jtab"></div>
+<button class="jx" onclick="jcsv()">EXPORTAR CSV</button>
+<button class="jx" onclick="if(confirm('Borrar todo el registro?')){localStorage.removeItem('trades');jrender()}">BORRAR</button>
+<p style="color:var(--g2);font-size:10px;margin-top:8px">Se guarda en este navegador. Exporta el CSV cada semana como copia de seguridad.
+El registro es lo que convierte la estrategia en datos: con 30-50 trades sabras tu tasa de acierto real.</p></div>
+
+<div class="sh"><span class="d" style="background:var(--red)"></span><h2 style="color:var(--red)">Eliminadas hoy</h2></div>
+<div class="dead"> <div class='dr'><span class='t'>ACHR</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>AI</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>ALHC</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>APLD</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>AR</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>BBAI</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>BEAM</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>BTDR</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>CELH</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>CHPT</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div></div>
+
+<footer>
+<p><b>Compuertas:</b> precio 3-45 $ · tendencia (sobre MA50 y MA200) · a menos del 6% del maximo de 20 sesiones ·
+ADR minimo 4% · liquidez minima 25 M$/dia · stop maximo 9% · sin earnings en 8 sesiones · titulares a la vista.</p>
+<p><b>El juicio final es humano:</b> lee los titulares antes de armar cada orden. Si el catalizador es negativo
+(dilucion, guia recortada, investigacion), no operes aunque el tecnico sea perfecto.</p>
+<p><b>Expectativa honesta:</b> perfil agresivo, tasa de acierto estimada 35-45% sin validar. Rentable solo si cada
+acierto paga ~3x cada fallo y ejecutas todos los stops. Fechas de earnings de Yahoo: verificalas en el IR de cada
+empresa. Panel de analisis, no recomendacion de inversion.</p></footer></div>
+<script>
+function calc(){var cap=+document.getElementById('cap').value||0,rp=+document.getElementById('rsk').value||0;
+var sel=document.getElementById('sym');if(!sel.value)return;
+var p=sel.value.split('|').map(Number),e=p[0],s=p[1],t2=p[2];
+var sh=cap*rp/100/(e-s);if(sh*e>cap)sh=cap/e;sh=Math.floor(sh*100)/100;
+document.getElementById('osh').textContent=sh.toFixed(2);
+document.getElementById('opos').textContent='$'+(sh*e).toFixed(0);
+document.getElementById('orisk').textContent='-$'+(sh*(e-s)).toFixed(2);
+document.getElementById('ogain').textContent='+$'+(sh*(t2-e)).toFixed(2);}
+['cap','rsk','sym'].forEach(function(id){document.getElementById(id).addEventListener('input',calc)});calc();
+function jget(){try{return JSON.parse(localStorage.getItem('trades')||'[]')}catch(e){return[]}}
+function jadd(){var t=document.getElementById('jtk').value.trim().toUpperCase();
+var en=+document.getElementById('jen').value,sl=+document.getElementById('jsl').value,
+exv=document.getElementById('jex').value,ex=exv===''?null:+exv;
+if(!t||!en||!sl){alert('Ticker, entrada y stop son obligatorios');return}
+var a=jget();a.push({d:new Date().toISOString().slice(0,10),t:t,e:en,s:sl,x:ex});
+localStorage.setItem('trades',JSON.stringify(a));
+['jtk','jen','jsl','jex'].forEach(function(i){document.getElementById(i).value=''});jrender()}
+function jrender(){var a=jget(),el=document.getElementById('jtab');
+if(!a.length){el.innerHTML='<p style="color:var(--g2);font-size:11px">Sin operaciones registradas.</p>';return}
+var w=0,n=0,rs=0;var h='<table><tr><th>FECHA</th><th>TK</th><th>ENT</th><th>STOP</th><th>SAL</th><th>R</th></tr>';
+a.slice().reverse().forEach(function(o){var r=o.x==null?null:(o.x-o.e)/(o.e-o.s);
+if(r!=null){n++;rs+=r;if(r>0)w++}
+h+='<tr><td>'+o.d+'</td><td>'+o.t+'</td><td>'+o.e.toFixed(2)+'</td><td>'+o.s.toFixed(2)+'</td><td>'+
+(o.x==null?'abierto':o.x.toFixed(2))+'</td><td class="'+(r==null?'':r>0?'pos':'neg')+'">'+
+(r==null?'-':r.toFixed(2))+'</td></tr>'});
+h+='</table>';
+if(n)h+='<p style="color:var(--g1);font-size:11px;margin-top:8px">Cerradas: '+n+' · Aciertos: '+w+' ('+
+(100*w/n).toFixed(0)+'%) · R total: <b class="'+(rs>=0?'pos':'neg')+'">'+rs.toFixed(2)+'</b></p>';
+el.innerHTML=h}
+function jcsv(){var a=jget();if(!a.length)return;
+var c='fecha,ticker,entrada,stop,salida,R\n'+a.map(function(o){
+var r=o.x==null?'':((o.x-o.e)/(o.e-o.s)).toFixed(3);
+return[o.d,o.t,o.e,o.s,o.x==null?'':o.x,r].join(',')}).join('\n');
+var b=new Blob([c],{type:'text/csv'}),u=URL.createObjectURL(b),l=document.createElement('a');
+l.href=u;l.download='trades.csv';l.click()}
+jrender();
+</script></body></html>
