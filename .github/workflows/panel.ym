@@ -1,0 +1,23 @@
+name: Panel USA diario
+on:
+  schedule:
+    - cron: '30 22 * * 1-5'   # 22:30 UTC = 30 min tras el cierre de NY, lunes a viernes
+  workflow_dispatch:            # boton "Run workflow" para dispararlo a mano desde el movil
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install yfinance pandas numpy
+      - run: python panel_usa.py
+      - name: Publicar en GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: gh-pages
+          keep_files: false
