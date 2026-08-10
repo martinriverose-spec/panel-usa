@@ -171,8 +171,11 @@ def esc(s):
     return html.escape(str(s), quote=True)
 
 
-def build_html(finalists, dis_tech, dis_earn, fecha_datos):
-    gen = datetime.now().strftime('%d/%m/%Y %H:%M UTC')
+def build_html(finalists, dis_tech, dis_earn, fecha_datos, repo_url=''):
+    gen_dt = datetime.now(timezone.utc)
+    gen = gen_dt.strftime('%d/%m/%Y %H:%M UTC')
+    gen_iso = gen_dt.isoformat()
+    actions_url = (repo_url.rstrip('/') + '/actions') if repo_url else ''
 
     def card(r, news, main):
         nh = ''.join(
@@ -227,6 +230,21 @@ body{background:var(--bg);color:var(--w);font-family:Archivo,system-ui,sans-seri
 .wrap{max-width:760px;margin:0 auto;padding:0 14px}
 header{padding:20px 0 10px}h1{font-size:24px;font-weight:900;letter-spacing:-.02em}
 h1 span{color:var(--mint)}.sub{color:var(--g2);font-size:11.5px;font-family:'JetBrains Mono',monospace;margin-top:4px}
+.fresh{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line);
+padding:11px 13px;margin-top:12px}
+.fdot{width:12px;height:12px;border-radius:50%;flex:0 0 12px;background:var(--g2)}
+.ftxt{flex:1;min-width:0}
+.fmain{font-size:13px;font-weight:700}
+.fsub{font-size:10.5px;color:var(--g2);font-family:'JetBrains Mono',monospace;margin-top:1px}
+.fbtns{display:flex;gap:6px;flex-wrap:wrap}
+.frb,.fab{font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:8px 11px;border:1px solid var(--line);
+background:var(--card2);color:var(--g1);cursor:pointer;font-family:Archivo;text-decoration:none;white-space:nowrap}
+.frb:hover,.fab:hover{border-color:var(--blue);color:#fff}
+.fresh.ok .fdot{background:var(--mint);box-shadow:0 0 8px var(--mint)}
+.fresh.warn .fdot{background:var(--amber)}
+.fresh.old .fdot{background:var(--red)}
+@media(max-width:520px){.fresh{flex-wrap:wrap}.fbtns{width:100%;justify-content:stretch}
+.frb,.fab{flex:1;text-align:center}}
 .sh{display:flex;align-items:center;gap:8px;margin:24px 0 10px}
 .sh .d{width:10px;height:10px;border-radius:50%}.sh h2{font-size:16px;font-weight:900}
 .pick{background:var(--card);border:2px solid var(--mint);margin-bottom:14px}
@@ -288,7 +306,19 @@ footer{margin-top:24px;padding-top:13px;border-top:1px solid var(--line);color:v
 footer b{color:var(--g1)}
 </style></head><body><div class="wrap">
 <header><h1>Panel <span>USA</span> · Swing</h1>
-<div class="sub">Datos: cierre NY __FECHA__ · Generado __GEN__ · Estrategia: momentum 2-7 dias, objetivo 2-3,5 ATR</div></header>
+<div class="sub">Estrategia: momentum 2-7 dias, objetivo 2-3,5 ATR</div></header>
+
+<div class="fresh" id="fresh">
+  <div class="fdot" id="fdot"></div>
+  <div class="ftxt">
+    <div class="fmain" id="fmain">Cierre NY __FECHA__</div>
+    <div class="fsub">Panel generado __GEN__</div>
+  </div>
+  <div class="fbtns">
+    <button class="frb" onclick="location.href=location.pathname+'?t='+Date.now()">RECARGAR</button>
+    __ACTIONSBTN__
+  </div>
+</div>
 
 <div class="sh"><span class="d" style="background:var(--mint)"></span><h2 style="color:var(--mint)">Ordenes de hoy</h2></div>
 __FINALES__
@@ -367,9 +397,19 @@ return[o.d,o.t,o.e,o.s,o.x==null?'':o.x,r].join(',')}).join('\\n');
 var b=new Blob([c],{type:'text/csv'}),u=URL.createObjectURL(b),l=document.createElement('a');
 l.href=u;l.download='trades.csv';l.click()}
 jrender();
-</script></body></html>""".replace('__FECHA__', fecha_datos).replace('__GEN__', gen) \
+(function(){
+  var gen=new Date("__GENISO__"), now=new Date(), hrs=(now-gen)/36e5;
+  var el=document.getElementById('fresh'), sub=document.querySelector('.fsub');
+  var cls='ok', msg='Datos al dia.';
+  if(hrs>72){cls='old'; msg='Sin actualizar hace mas de 3 dias. Revisa que el workflow siga corriendo en Actions.';}
+  else if(hrs>40){cls='warn'; msg='Puede faltar la sesion mas reciente. Si es antes de las 00:30 (Madrid) tras el cierre de NY, es normal.';}
+  el.className='fresh '+cls;
+  if(sub) sub.textContent+=' · '+msg;
+})();
+</script></body></html>""".replace('__FECHA__', fecha_datos).replace('__GEN__', gen).replace('__GENISO__', gen_iso) \
    .replace('__FINALES__', finals_html).replace('__OPTS__', opts) \
-   .replace('__EARN__', earn_rows).replace('__TECH__', tech_rows)
+   .replace('__EARN__', earn_rows).replace('__TECH__', tech_rows) \
+   .replace('__ACTIONSBTN__', f'<a class="fab" href="{actions_url}" target="_blank" rel="noopener">EJECUTAR AHORA</a>' if actions_url else '')
 
 
 def main():
@@ -385,7 +425,10 @@ def main():
     for r in finalists[:MAX_FINALISTS]:
         print(f"  {r.tk:5s} buy-stop {r.entry:7.2f}  stop {r.stop:7.2f} ({r.riskpct:4.1f}%)  "
               f"OBJ2 {r.t2:7.2f} (+{r.t2pct:4.1f}%)  R:R {r.rr2:.1f}  earnings {r.get('earn','?')}")
-    html_out = build_html(finalists, dis_tech, dis_earn, fecha)
+    import os
+    repo = os.environ.get('GITHUB_REPOSITORY', '')  # p.ej. martinriverose-spec/panel-usa
+    repo_url = f'https://github.com/{repo}' if repo else ''
+    html_out = build_html(finalists, dis_tech, dis_earn, fecha, repo_url)
     Path('index.html').write_text(html_out, encoding='utf-8')
     print('Panel: index.html')
 
