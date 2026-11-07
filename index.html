@@ -90,8 +90,8 @@ footer b{color:var(--g1)}
 <div class="fresh" id="fresh">
   <div class="fdot" id="fdot"></div>
   <div class="ftxt">
-    <div class="fmain" id="fmain">Cierre NY 2026-11-05</div>
-    <div class="fsub">Panel generado 06/11/2026 02:43 UTC</div>
+    <div class="fmain" id="fmain">Cierre NY 2026-11-06</div>
+    <div class="fsub">Panel generado 07/11/2026 02:10 UTC</div>
   </div>
   <div class="fbtns">
     <button class="frb" onclick="location.href=location.pathname+'?t='+Date.now()">RECARGAR</button>
@@ -100,14 +100,33 @@ footer b{color:var(--g1)}
 </div>
 
 <div class="sh"><span class="d" style="background:var(--mint)"></span><h2 style="color:var(--mint)">Ordenes de hoy</h2></div>
-<div class='empty'><div class='big'>NO OPERAR</div>Ningun valor supera las compuertas hoy. Un dia sin operacion es un resultado valido: el capital que no arriesgas en un mal dia es el que compone en los buenos.</div>
+
+<div class="pick" data-e="5.99" data-s="5.70" data-t2="6.82" data-tk="PTON">
+  <div class="ph"><div class="t">PTON<em>5.66 $ · earnings 04/02</em></div>
+    <div class="b">PRINCIPAL</div></div>
+  <div class="trg"><div class="lab">BUY-STOP — SI NO TOCA ESTE PRECIO, NO HAY OPERACION</div>
+    <div class="px">5.99 $</div></div>
+  <div class="lv">
+    <div class="lc s"><div class="n">STOP</div><div class="p">5.70</div><div class="x">-4.8%</div></div>
+    <div class="lc t"><div class="n">OBJ 1 (2 ATR)</div><div class="p">6.46</div><div class="x">+7.9%</div></div>
+    <div class="lc t"><div class="n">OBJ 2 (3,5 ATR)</div><div class="p">6.82</div><div class="x">+13.9% · R:R 2.9</div></div>
+  </div>
+  <div class="det">
+    <div class="rw"><span class="kk">RACIONAL</span><span class="v">Lider de momentum: a 5.7% de su maximo de 20 sesiones,
+      +15% en el mes, +9% sobre MA200. ADR 4.3% — el objetivo de +14% son 3,5 dias tipicos de rango.
+      RVOL 2.18 · 45 M$/dia.</span></div>
+    <div class="rw"><span class="kk">GESTION</span><span class="v">Mitad fuera en 6.46, stop a 5.99. Resto a 6.82.
+      Cierra si en 5 sesiones no toco OBJ1. Cancela la orden si abre con hueco &gt;+4%.</span></div>
+    <div class="rw news"><span class="kk">TITULARES</span><span class="v"><a class='nw' href='https://finance.yahoo.com/markets/stocks/articles/peloton-interactive-inc-pton-q1-190940341.html' target='_blank' rel='noopener'><span class='nd'>2026-11-06 · GuruFocus.com</span>Peloton Interactive Inc (PTON) (Q1 2027) Earnings Call Highlights: Margin Expansion and Debt ...</a><a class='nw' href='https://finance.yahoo.com/markets/stocks/articles/wall-street-analysts-see-40-135501818.html' target='_blank' rel='noopener'><span class='nd'>2026-11-06 · Zacks</span>Wall Street Analysts See a 40.81% Upside in Peloton (PTON): Can the Stock Really Move This High?</a><a class='nw' href='https://finance.yahoo.com/markets/stocks/articles/strong-buy-stocks-november-6th-074800659.html' target='_blank' rel='noopener'><span class='nd'>2026-11-06 · Zacks</span>New Strong Buy Stocks for November 6th</a></span></div>
+  </div>
+</div>
 
 <div class="sh"><span class="d" style="background:var(--blue)"></span><h2 style="color:var(--blue)">Tamano de posicion</h2></div>
 <div class="calc"><h3>CUANTAS ACCIONES</h3>
 <div class="cin">
 <div class="cf"><label>CAPITAL ($)</label><input type="number" id="cap" value="500"></div>
 <div class="cf"><label>RIESGO (%)</label><input type="number" id="rsk" value="3" step="0.5"></div>
-<div class="cf"><label>VALOR</label><select id="sym"></select></div></div>
+<div class="cf"><label>VALOR</label><select id="sym"><option value='5.99|5.70|6.82'>PTON</option></select></div></div>
 <div class="cout">
 <div class="co"><div class="k">ACCIONES</div><div class="v" id="osh">-</div></div>
 <div class="co"><div class="k">POSICION</div><div class="v" id="opos">-</div></div>
@@ -129,7 +148,7 @@ footer b{color:var(--g1)}
 El registro es lo que convierte la estrategia en datos: con 30-50 trades sabras tu tasa de acierto real.</p></div>
 
 <div class="sh"><span class="d" style="background:var(--red)"></span><h2 style="color:var(--red)">Eliminadas hoy</h2></div>
-<div class="dead"><div class='dr'><span class='t'>TDOC</span><span class='w'>Earnings 28/10 — a -7 sesiones</span></div><div class='dr'><span class='t'>LYFT</span><span class='w'>Earnings 05/11 — a -1 sesiones</span></div><div class='dr'><span class='t'>PTON</span><span class='w'>Earnings 05/11 — a -1 sesiones</span></div> <div class='dr'><span class='t'>AA</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>ACHR</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>AI</span><span class='w'>A 14.6% del maximo: lejos del liderazgo</span></div><div class='dr'><span class='t'>ALHC</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>APLD</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>AR</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>ASTS</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>BEAM</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>BKSY</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>BTDR</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div></div>
+<div class="dead"><div class='dr'><span class='t'>TDOC</span><span class='w'>Earnings 28/10 — a -7 sesiones</span></div><div class='dr'><span class='t'>LYFT</span><span class='w'>Earnings 05/11 — a -1 sesiones</span></div> <div class='dr'><span class='t'>AA</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>ACHR</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>AI</span><span class='w'>A 14.6% del maximo: lejos del liderazgo</span></div><div class='dr'><span class='t'>ALHC</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>APLD</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>AR</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>ASTS</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>BEAM</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>BKSY</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div><div class='dr'><span class='t'>BTDR</span><span class='w'>Sin tendencia (bajo MA50/MA200)</span></div></div>
 
 <footer>
 <p><b>Compuertas:</b> precio 3-45 $ · tendencia (sobre MA50 y MA200) · a menos del 6% del maximo de 20 sesiones ·
@@ -177,7 +196,7 @@ var b=new Blob([c],{type:'text/csv'}),u=URL.createObjectURL(b),l=document.create
 l.href=u;l.download='trades.csv';l.click()}
 jrender();
 (function(){
-  var gen=new Date("2026-11-06T02:43:32.502820+00:00"), now=new Date(), hrs=(now-gen)/36e5;
+  var gen=new Date("2026-11-07T02:10:56.714683+00:00"), now=new Date(), hrs=(now-gen)/36e5;
   var el=document.getElementById('fresh'), sub=document.querySelector('.fsub');
   var cls='ok', msg='Datos al dia.';
   if(hrs>72){cls='old'; msg='Sin actualizar hace mas de 3 dias. Revisa que el workflow siga corriendo en Actions.';}
