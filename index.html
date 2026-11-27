@@ -91,7 +91,7 @@ footer b{color:var(--g1)}
   <div class="fdot" id="fdot"></div>
   <div class="ftxt">
     <div class="fmain" id="fmain">Cierre NY 2026-11-25</div>
-    <div class="fsub">Panel generado 26/11/2026 04:15 UTC</div>
+    <div class="fsub">Panel generado 27/11/2026 04:25 UTC</div>
   </div>
   <div class="fbtns">
     <button class="frb" onclick="location.href=location.pathname+'?t='+Date.now()">RECARGAR</button>
@@ -196,7 +196,7 @@ var b=new Blob([c],{type:'text/csv'}),u=URL.createObjectURL(b),l=document.create
 l.href=u;l.download='trades.csv';l.click()}
 jrender();
 (function(){
-  var gen=new Date("2026-11-26T04:15:54.297855+00:00"), now=new Date(), hrs=(now-gen)/36e5;
+  var gen=new Date("2026-11-27T04:25:17.620722+00:00"), now=new Date(), hrs=(now-gen)/36e5;
   var el=document.getElementById('fresh'), sub=document.querySelector('.fsub');
   var cls='ok', msg='Datos al dia.';
   if(hrs>72){cls='old'; msg='Sin actualizar hace mas de 3 dias. Revisa que el workflow siga corriendo en Actions.';}
